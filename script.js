@@ -159,3 +159,45 @@ function removeFromFavourites(id) {
     localStorage.removeItem("lastSearch");
   }
 }
+
+function displayFavourites() {
+  const container = document.getElementById("favouriteContainer");
+  const title = document.getElementById("favouriteTitle");
+  const favourites = getFavourites();
+
+  if (favourites.length === 0) {
+    container.innerHTML = "";
+    container.style.display = "none";
+    title.style.display = "none";
+    return;
+  }
+
+  container.style.display = "flex";
+  title.style.display = "block";
+
+  container.innerHTML = favourites.map(movie => `
+    <div class="movie">
+      <img src="${movie.Poster !== "N/A" ? movie.Poster : "https://via.placeholder.com/150"}"
+           onclick="showMovieDetails('${movie.imdbID}')" />
+      <h3>${movie.Title}</h3>
+      <button onclick="removeFromFavourites('${movie.imdbID}')">💔 Unlike</button>
+    </div>
+  `).join("");
+}
+
+
+document.getElementById("searchInput").addEventListener("keypress", function (e) {
+  if (e.key === "Enter") {
+    searchMovies();
+  }
+});
+
+
+window.onload = function () {
+  document.getElementById("trendingContainer").style.display = "flex";
+  document.getElementById("trendingTitle").style.display = "block";
+  document.getElementById("searchTitle").style.display = "none";
+  document.getElementById("movieContainer").innerHTML = "";
+
+  displayFavourites();
+};
