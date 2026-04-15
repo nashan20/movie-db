@@ -70,3 +70,37 @@ function displayMovies(movies) {
     `;
   }).join("");
 }
+
+async function showMovieDetails(id) {
+  hideAllSections();
+
+  const container = document.getElementById("movieContainer");
+  container.innerHTML = "Loading...";
+
+  try {
+    const response = await fetch(`https://www.omdbapi.com/?i=${id}&apikey=${API_KEY}`);
+    const movie = await response.json();
+
+    const favourites = getFavourites();
+    const isLiked = favourites.some(f => f.imdbID === movie.imdbID);
+
+    container.innerHTML = `
+      <div class="movie-details">
+        <button class="back-btn" onclick="goBack()">⬅ Back</button>
+        <img src="${movie.Poster !== "N/A" ? movie.Poster : "https://via.placeholder.com/150"}" />
+        <h2>${movie.Title}</h2>
+        <p><b>Year:</b> ${movie.Year}</p>
+        <p><b>Genre:</b> ${movie.Genre}</p>
+        <p><b>Plot:</b> ${movie.Plot}</p>
+
+        ${
+          isLiked
+            ? `<button onclick="removeFromFavourites('${movie.imdbID}')">💔 Unlike</button>`
+            : `<button onclick="addToFavourites('${movie.imdbID}')">❤️ Like</button>`
+        }
+      </div>
+    `;
+  } catch (error) {
+    container.innerHTML = "Error loading movie details";
+  }
+}
