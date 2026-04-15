@@ -137,3 +137,25 @@ async function addToFavourites(id) {
     if (lastSearch) displayMovies(lastSearch);
   }
 }
+
+function removeFromFavourites(id) {
+  let favourites = getFavourites();
+
+  favourites = favourites.filter(movie => movie.imdbID !== id);
+
+  saveFavourites(favourites);
+
+
+  displayFavourites();
+
+  
+  if (favourites.length === 0) {
+    document.getElementById("trendingContainer").style.display = "flex";
+    document.getElementById("trendingTitle").style.display = "block";
+
+    document.getElementById("searchTitle").style.display = "none";
+    document.getElementById("movieContainer").innerHTML = "";
+
+    localStorage.removeItem("lastSearch");
+  }
+}
