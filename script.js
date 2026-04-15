@@ -104,3 +104,19 @@ async function showMovieDetails(id) {
     container.innerHTML = "Error loading movie details";
   }
 }
+
+function goBack() {
+  const lastSearch = JSON.parse(localStorage.getItem("lastSearch"));
+
+  if (lastSearch && lastSearch.length > 0) {
+    hideAllSections();
+    document.getElementById("searchTitle").style.display = "block";
+    displayMovies(lastSearch);
+  } else {
+    document.getElementById("trendingContainer").style.display = "flex";
+    document.getElementById("trendingTitle").style.display = "block";
+
+    displayFavourites();
+    document.getElementById("movieContainer").innerHTML = "";
+  }
+}
