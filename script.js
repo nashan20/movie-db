@@ -47,3 +47,26 @@ async function searchMovies() {
   }
 }
 
+function displayMovies(movies) {
+  const container = document.getElementById("movieContainer");
+  const favourites = getFavourites();
+
+  container.innerHTML = movies.map(movie => {
+    const isLiked = favourites.some(f => f.imdbID === movie.imdbID);
+
+    return `
+      <div class="movie">
+        <img src="${movie.Poster !== "N/A" ? movie.Poster : "https://via.placeholder.com/150"}"
+             onclick="showMovieDetails('${movie.imdbID}')" />
+        <h3>${movie.Title}</h3>
+        <p>${movie.Year}</p>
+
+        ${
+          isLiked
+            ? `<button onclick="removeFromFavourites('${movie.imdbID}')">💔 Unlike</button>`
+            : `<button onclick="addToFavourites('${movie.imdbID}')">❤️ Like</button>`
+        }
+      </div>
+    `;
+  }).join("");
+}
