@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Movie DB</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<h1>Movie DB</h1>
+
+<input type="text" id="searchInput" placeholder="Search movie..." onkeyup="searchMovies()">
+<button onclick="searchMovies()">Search</button>
+
+<h4 id="trendingTitle">Trending now on stream</h4>
+
+<div id="trendingContainer">
+  <div class="movie">
+    <img src="images/Frankenstein.jpg" alt="Frankenstein">
+    <h3>Frankenstein</h3>
+    <p>2025</p>
+  </div>
+
+  <div class="movie">
+    <img src="images/Bride.jpg" alt="Bride">
+    <h3>The Bride!</h3>
+    <p>2026</p>
+  </div>
+
+  <div class="movie">
+    <img src="images/PS.jpg" alt="Phoenician Scheme">
+    <h3>The Phoenician Scheme</h3>
+    <p>2025</p>
+  </div>
+
+  <div class="movie">
+    <img src="images/mercy.jpg" alt="Mercy">
+    <h3>The Mercy</h3>
+    <p>2026</p>
+  </div>
+
+  <div class="movie">
+    <img src="images/The_Wrecking_Crew_poster.jpeg" alt="Wrecking Crew">
+    <h3>The Wrecking Crew</h3>
+    <p>2026</p>
+  </div>
+
+  <div class="movie">
+    <img src="images/Firebreak.jpg" alt="Firebreak">
+    <h3>Firebreak</h3>
+    <p>2026</p>
+  </div>
+
+  <div class="movie">
+    <img src="images/the_bluff.jpg" alt="The Bluff">
+    <h3>The Bluff</h3>
+    <p>2026</p>
+  </div>
+</div>
+
+<h4 id="favouriteTitle">Favourite Movies</h4>
+
+<div id="favouriteContainer">
+  
+</div>
+
+<h4 id="searchTitle" style="display:none;">Search Results</h4>
+
+<div id="movieContainer">
+  <p style="text-align:center;">Search for movies...</p>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
