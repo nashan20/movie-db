@@ -126,16 +126,8 @@ async function addToFavourites(id) {
   const movie = await response.json();
 
   let favourites = getFavourites();
-
-  if (!favourites.some(m => m.imdbID === id)) {
-    favourites.push(movie);
-    saveFavourites(favourites);
-    displayFavourites();
-
-    
-    const lastSearch = JSON.parse(localStorage.getItem("lastSearch"));
-    if (lastSearch) displayMovies(lastSearch);
-  }
+  favourites.push(movie);
+  saveFavourites(favourites);
 }
 
 function removeFromFavourites(id) {
